@@ -1,0 +1,59 @@
+# Default configuration for domain-batch-tool
+mode: pipeline  # generate-only, check-only, or pipeline
+
+# Output configuration
+output:
+  format: text  # text, csv, json
+  file: results.txt  # path to output file; omit or set null to use stdout
+
+# Generation configuration
+max_count: null  # limit total generated domains; null for unlimited
+tlds:
+  - .com
+  - .net
+  - .cn
+
+# Filters
+filters:
+  length:
+    enabled: true
+    min_length: 2
+    max_length: 12
+  charset:
+    enabled: false
+    allowed: "abcdefghijklmnopqrstuvwxyz0123456789-"
+  blacklist:
+    enabled: false
+    entries: []
+
+# Generators to use in pipeline mode
+# Each entry selects a generator type and its options
+# Supported types: letters, digits, digits_no04, wordlist
+# Generators are combined by simple concatenation in the order defined below.
+generators:
+  - type: letters
+    enabled: true
+    length_range: [2, 3]
+    uppercase: false
+  - type: digits
+    enabled: false
+    length_range: [2, 2]
+  - type: digits_no04
+    enabled: false
+    length_range: [2, 2]
+    mode: substring
+  - type: wordlist
+    enabled: false
+    file: wordlists/nouns.txt
+
+# Checker configuration
+checkers:
+  dns:
+    enabled: true
+    timeout: 3
+  whois:
+    enabled: false
+    timeout: 5
+
+# Check concurrency
+concurrency: 10

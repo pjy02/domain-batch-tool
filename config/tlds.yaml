@@ -1,0 +1,11 @@
+# Placeholder for TLD specific WHOIS parsing rules
+# Extend this file with real WHOIS server patterns when available.
+com:
+  whois: whois.verisign-grs.com
+  not_found: 'No match for'
+net:
+  whois: whois.verisign-grs.com
+  not_found: 'No match for'
+cn:
+  whois: whois.cnnic.cn
+  not_found: 'no matching record'
