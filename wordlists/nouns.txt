@@ -1,0 +1,5 @@
+cloud
+shop
+vip
+home
+tech
